@@ -1,0 +1,15 @@
+{
+  "name": "paper-node",
+  "version": "1.0.0",
+  "description": "a little design project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3"
+  }
+}
