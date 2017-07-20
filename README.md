@@ -2,7 +2,8 @@
 A simple project on basics of learing new languages like nodejs , mongoDB , paperjs , some cool js listner events.
 it animate circle at ramdom location of the screen when a key is pressed !
 
-When someone press any key on keyboard it show the animated circle with specific color and sound.
-// just for fun project
+When someone press any key on keyboard it show the animated circle & square with specific color and sound.
+// just for fun project //
 
-DIRECT LINK FOR THIS APPLICATION > https://kprocks86.herokuapp.com/
+
+DIRECT LINK FOR THIS APPLICATION > https://onekpnode.herokuapp.com/
