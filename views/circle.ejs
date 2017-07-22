@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <script type="text/javascript" src="/assets/paper-full.js"></script>
     <style>
@@ -47,10 +46,11 @@
     <script type="text/paperscript" canvas="myCanvas">
     var keyData = {
         a: {
-            color: 'red',
+            color: '#4d004d',
             sound: new Howl({
                 src: ['/sounds/G/bubbles.mp3']
             })
+
         },
         s: {
             color: 'white',
@@ -107,7 +107,7 @@
             })
         },
         w: {
-            color: '#ccff33',
+            color: 'black',
             sound: new Howl({
                 src: ['sounds/G/dotted-spiral.mp3']
             })
@@ -119,7 +119,7 @@
             })
         },
         r: {
-            color: '#00ffff',
+            color: 'red',
             sound: new Howl({
                 src: ['sounds/G/flash-2.mp3']
             })
@@ -201,14 +201,48 @@
             sound: new Howl({
                 src: ['sounds/G/strike.mp3']
             })
+
         }
     }
     var circle = [];
     var square = [];
+    var arrayOfText = [];
+    var count = 0;
+    var maxPoint = new Point(view.size.width, view.size.height);
+    var position = new Point(view.size.width/2, view.size.height/2);
+    var step = 100;
+    var path = new Path();
+    path.strokeColor = 'black';
+    path.add(position);
 
-    function onKeyDown(event) {
+var text = new PointText({
+  point: view.point,
+
+  justification: 'center',
+  fontSize: 15
+});
+   function onKeyDown(event) {
         if (keyData[event.key]) {
-            var maxPoint = new Point(view.size.width, view.size.height);
+          if (event.key == 'a') {
+            path.strokeColor = keyData[event.key].color;
+            position.x -= step;
+          }
+          if (event.key == 'd') {
+            path.strokeColor = keyData[event.key].color;
+
+            position.x += step;
+          }
+          if (event.key == 'w') {
+            path.strokeColor = keyData[event.key].color;
+
+            position.y -= step;
+          }
+          if (event.key == 's') {
+            path.strokeColor = keyData[event.key].color;
+            position.y += step;
+          }
+          path.add(position);
+
             var randomPoint = Point.random();
             var point = maxPoint * randomPoint;
             var newCircle = new Path.Circle(point, 200);
@@ -218,28 +252,41 @@
                 point: point,
                 size: [200, 200]
             });
+
             newSquare.strokeColor = keyData[event.key].color;
             keyData[event.key].sound.play();
             circle.push(newCircle);
             square.push(newSquare);
-        }
-    }
 
-    function onFrame(event) {
+
+              count ++;
+           text.content = event.key ;
+           arrayOfText.push(event.key);
+           arrayOfText.toString();
+           console.log(arrayOfText[count-1]);
+
+        }
+  }
+
+
+
+  function onFrame(event) {
         for (var i = 0; i < circle.length; i++) {
             circle[i].scale(.94);
             circle[i].fillColor.hue += 1;
             square[i].rotate(3);
-            square[i].scale(.94)
+            square[i].scale(.94);
+
         }
-
-
     }
+
     </script>
 </head>
 
 <body>
-    <canvas id="myCanvas" resize></canvas>
+    <canvas id="myCanvas" resize>
+
+    </canvas>
 </body>
 
 </html>
